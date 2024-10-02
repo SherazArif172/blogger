@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -23,7 +26,8 @@ class PostController extends Controller
     {
         //
         $categories = Category::all();
-        return view('auth.posts.create')->with('categories', $categories);
+        $tags = Tag::all();
+        return view('auth.posts.create')->with('categories', $categories)->with('tags', $tags);
     }
 
     /**
@@ -31,7 +35,39 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+
+         $request->validate([
+              'title'=>['required','string','max:255'],
+              'description' => ['required','string', 'max:3000'],
+              'status'  => ['required','integer','max:255'],
+              'category' => ['required','integer','max:255'],
+              'tags'        => ['nullable','array'],
+              "tags.*" => ['required','string','max:255']
+        ]);
+
+
+
+      try {
+        DB::transaction(function() use ($request) {    // dependandt record
+            $post=Post::create([
+                'user_id'=>auth()->id(),
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'status'=>$request->status,
+                'category_id'=>$request->category,
+            ]);
+
+            foreach ($request->tags as $tag){
+
+                $post->tags()->attach($tag);  // honi ye aik line the laken for each is lye chlyaa q k hmary pass multiple tags hain
+            }
+        });
+      } catch (\Exception $ex) {
+             return back()->withErrors($ex->getMessage());
+      }
+
+        return $request->all();
     }
 
     /**
