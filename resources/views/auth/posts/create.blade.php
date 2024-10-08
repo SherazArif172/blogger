@@ -17,8 +17,10 @@
       <div class="card card-default">
         <div class="card-header">
           <h2>Create Post</h2>
-          <a class="btn mdi mdi-code-tags" data-toggle="collapse" href="#collapse-input-musk" role="button" aria-expanded="false" aria-controls="collapse-input-musk"></a>
         </div>
+
+
+
         <div class="card-body">
             <form method="post" action="{{ route('posts.store') }}">
                 @csrf

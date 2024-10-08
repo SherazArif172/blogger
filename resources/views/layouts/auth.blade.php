@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mono - Responsive Admin & Dashboard Template</title>
+    <title>@yield('title','Home')</title>
     <!-- theme meta -->
     <meta name="theme-name" content="mono" />
     <!-- GOOGLE FONTS -->
@@ -76,6 +76,34 @@
                   <span class="nav-text">Categories</span>
                 </a>
               </li>
+
+              <li class="has-sub">
+                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email" aria-expanded="false" aria-controls="email">
+                  <i class="mdi mdi-email"></i>
+                  <span class="nav-text">Posts</span>
+                  <b class="caret"></b>
+                </a>
+                <ul class="collapse" id="email" data-parent="#sidebar-menu">
+                  <div class="sub-menu">
+                    <li>
+                      <a class="sidenav-item-link" href="{{ route('posts.create') }}">
+                        <span class="nav-text">Create Post</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="sidenav-item-link" href="{{ route('posts.index') }}">
+                        <span class="nav-text">All Posts</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="sidenav-item-link" href="email-compose.html">
+                        <span class="nav-text">Email Compose</span>
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+
               <li>
                 <a class="sidenav-item-link" href="contacts.html">
                   <i class="mdi mdi-phone"></i>
@@ -94,32 +122,7 @@
                   <span class="nav-text">Calendar</span>
                 </a>
               </li>
-              <li class="has-sub">
-                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#email" aria-expanded="false" aria-controls="email">
-                  <i class="mdi mdi-email"></i>
-                  <span class="nav-text">email</span>
-                  <b class="caret"></b>
-                </a>
-                <ul class="collapse" id="email" data-parent="#sidebar-menu">
-                  <div class="sub-menu">
-                    <li>
-                      <a class="sidenav-item-link" href="email-inbox.html">
-                        <span class="nav-text">Email Inbox</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="sidenav-item-link" href="email-details.html">
-                        <span class="nav-text">Email Details</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="sidenav-item-link" href="email-compose.html">
-                        <span class="nav-text">Email Compose</span>
-                      </a>
-                    </li>
-                  </div>
-                </ul>
-              </li>
+
               <li class="section-title"> UI Elements </li>
               <li class="has-sub">
                 <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements" aria-expanded="false" aria-controls="ui-elements">
