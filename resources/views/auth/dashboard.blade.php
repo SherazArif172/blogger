@@ -90,7 +90,7 @@
                       <div class="card-header">
                         <h2>{{ $usersCount }}</h2>
                         <div class="sub-title">
-                          <span class="mr-1">Users</span><i class="far fa-adress-card "></i>
+                          <span class="mr-1">Users</span>
                         </div>
                       </div>
                       <div class="card-body">

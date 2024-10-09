@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Gallery extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    public const POST_IMAGE = 1;
 
+    protected $fillable = ['name','type'];
 }

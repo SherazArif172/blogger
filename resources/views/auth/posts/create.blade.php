@@ -22,7 +22,7 @@
 
 
         <div class="card-body">
-            <form method="post" action="{{ route('posts.store') }}">
+            <form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                 @csrf
                 @if ($errors->any())
     <div class="alert alert-danger">
@@ -36,8 +36,8 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Title</label>
               <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ old('title') }} " name='title' placeholder='title'>
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
+
             <div class="form-group">
               <label for="exampleInputPassword1">Description</label>
               <textarea name="description" id="" class="form-control" cols="30" rows="3" placeholder="Description" style="resize: none"></textarea>
@@ -72,6 +72,10 @@
                 @endif
               </select>
              </div>
+             <div class="form-group">
+                <label for="exampleInputEmail1">Image</label>
+                <input type="file" class="form-control"  value="{{ old('image') }} " name='file' >
+              </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form></div>
       </div>
@@ -83,3 +87,27 @@
     <script src="{{ asset('assets/auth/js/multi-dropdown.js') }}" ></script>
 
     @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {{-- post {!! Form::model($user, [$options]) !!} --}}
+

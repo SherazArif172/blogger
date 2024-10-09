@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -52,7 +53,26 @@ class PostController extends Controller
 
       try {
         DB::transaction(function() use ($request) {    // dependandt record
+
+            if ($file=$request->file('file')) {
+
+            $fileName =rand(100,1000).time(). $file->getClientOriginalName();
+            $filePath = public_path('/storage/auth/posts/');
+
+
+            $file->move($filePath,$fileName);
+
+           $gellery= Gallery::create([
+                'image'=>$fileName,
+                'type'=>Gallery::POST_IMAGE
+            ]);
+
+
+            }
+
+
             $post=Post::create([
+                'gallery_id'=>$gellery->id(),
                 'user_id'=>auth()->id(),
                 'title'=>$request->title,
                 'description'=>$request->description,
